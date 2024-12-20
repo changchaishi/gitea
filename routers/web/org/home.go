@@ -127,14 +127,14 @@ func home(ctx *context.Context, viewRepositories bool) {
 		profileType = "Private"
 	}
 
-	if !prepareOrgProfileReadme(ctx, viewRepositories, profileType) {
-		ctx.Data["PageIsViewRepositories"] = true
-	}
-
 	err = shared_user.RenderOrgHeader(ctx)
 	if err != nil {
 		ctx.ServerError("RenderOrgHeader", err)
 		return
+	}
+
+	if !prepareOrgProfileReadme(ctx, viewRepositories, profileType) {
+		ctx.Data["PageIsViewRepositories"] = true
 	}
 
 	var (

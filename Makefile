@@ -462,7 +462,7 @@ watch-frontend: node-check node_modules
 
 .PHONY: watch-backend
 watch-backend: go-check
-	GITEA_RUN_MODE=dev $(GO) run $(AIR_PACKAGE) -c .air.toml
+	GITEA_RUN_MODE=dev TAGS="sqlite sqlite_unlock_notify" $(GO) run $(AIR_PACKAGE) -c .air.toml
 
 .PHONY: test
 test: test-frontend test-backend
